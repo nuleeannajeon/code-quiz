@@ -21,16 +21,21 @@
                 <p>Try to answer the following code-related questions withing the 
                     time limit. Keep in mind that incorrect answers will penalize your 
                     score time. </p>
-                <button id="start-btn" class="start-btn btn">Start</button>
+                <button id="start-btn" onClick="startQuiz()" class="start-btn btn">Start</button>
             </div>
             <div id="question-container" class="hide">
                 <div id="question">Question</div>
-                <div id="answer-btn" class="btn-grid">
-                    <button class="btn">Answer 1</button>
+                <div id="answer-btn" class="btn-grid"> 
+                    <!-- onclick? -->
+                    <!-- <button class="btn">Answer 1</button>
                     <button class="btn">Answer 2</button>
                     <button class="btn">Answer 3</button>
-                    <button class="btn">Answer 4</button>
+                    <button class="btn">Answer 4</button> -->
                 </div>
+            </div>
+            <div id="answer-container">
+                <div id="correct-answer" class="vision">Correct Answer!</div>
+                <div id="wrong-answer" class="vision">Wrong Answer!</div>
             </div>
         </div>
 
@@ -38,3 +43,7 @@
 
 </body>
 </html>
+<!-- 1. need to reset button when next question is up
+    2. once last question is answered move to initial/score page 
+    3. timer - if wrong substract time, time starts from the top number to number--
+    4. localStorage points and high scores. -->

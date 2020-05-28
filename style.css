@@ -32,6 +32,7 @@ main {
     padding: 8px 10px;
     color: white;
     font-size: 15px;
+
 }
 
 .btn:hover, .btn:active {
@@ -42,15 +43,19 @@ main {
     font-size: 20px;
     font-weight: bold;
     padding: 10px 20px;
-    /* display: flex; moved to .btn in order to seperate from the h2 and p */
+    /*display: flex; moved to .btn in order to seperate from the h2 and p */
     justify-content: center;
     align-items: center;
 }
 
-.control {
+.start-container {
     text-align: center;
 }
 
 .hide {
     display: none;
 } /* redisplay once ready */
+
+.vision {
+    visibility: hidden;
+}
