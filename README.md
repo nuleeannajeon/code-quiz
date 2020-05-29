@@ -32,6 +32,10 @@ THEN I can save my initials and score
 The following animation demonstrates the application functionality:
 
 ![code quiz](./Assets/04-web-apis-homework-demo.gif)
+![code quiz](./Assets/start-page.png)
+![code quiz](./Assets/question-page.png)
+![code quiz](./Assets/initial-page.png)
+![code quiz](./Assets/highscore-page.png)
 
 ### Review
 
