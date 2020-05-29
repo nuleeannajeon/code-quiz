@@ -9,9 +9,8 @@
 </head>
 <body>
     <footer>
-        <!-- need to work after main is done -->
-        View High Score
-        Timer:00
+        <div id="high-score">View High Score</div>
+        <div id="timer">Timer: 100</div>    
     </footer>
 
     <main>
@@ -33,17 +32,33 @@
                     <button class="btn">Answer 4</button> -->
                 </div>
             </div>
-            <div id="answer-container">
-                <div id="correct-answer" class="vision">Correct Answer!</div>
-                <div id="wrong-answer" class="vision">Wrong Answer!</div>
+            <div id="final-container" class="hide">
+                <div id="initial-page" >
+                    <h2>All Done!</h2>
+                    <p id="user-score">Your final score is </p>
+                </br>
+                <label for="enter-initial">Enter initials:</label><input id="initial-box" type="text">
+                <button id="initial-btn" onClick="highScore()" type="button" class="initial-btn btn">Submit</button>
+                </div>
+            </div>
+            <div id="score-container" class="hide">
+                <h2>Highscores</h2>
+                <ol id="score-list">
+                </ol>
+                <button id="go-back" class="back-btn btn">Go Back</button>
+                <button id="clear-score" class="clear-btn btn">Clear Highscores</button>
             </div>
         </div>
-
     </main>
+    <section>
+        <div class="answer-container">
+            <div id="correct-answer" class="vision">Correct Answer!</div>
+            <div id="wrong-answer" class="vision">Wrong Answer!</div>
+            <!-- style="border-top: 1px solid grey" -->
+        </div>
+    </section>
 
 </body>
 </html>
-<!-- 1. need to reset button when next question is up
-    2. once last question is answered move to initial/score page 
-    3. timer - if wrong substract time, time starts from the top number to number--
+<!--
     4. localStorage points and high scores. -->

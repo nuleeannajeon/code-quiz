@@ -2,12 +2,40 @@
     box-sizing: border-box;
 }
 
+footer {
+    padding:0;
+    width: 100%;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+#high-score {
+    float: left;
+    margin-left: 10px;
+}
+
+#timer {
+    float: right;
+    margin-right: 10px;
+}
+
 main {
     padding: 0;
     margin: 0;
     display: flex;
-    width: 100vw;
+    width: 100%;
     margin-top: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100%;
+    margin-top: 5px;
+    color: grey;
     justify-content: center;
     align-items: center;
 }
@@ -15,8 +43,9 @@ main {
 .container {
     width: 800px;
     max-width: 80%;
-    border: 2px solid black; /* need to remove once done */
+    /* border: 2px solid black; */
     padding: 10px;
+    text-align: center;
 
 }
 
@@ -39,23 +68,25 @@ main {
     background-color: salmon;
 }
 
-.start-btn, .next-btn {
+.start-btn {
     font-size: 20px;
     font-weight: bold;
     padding: 10px 20px;
-    /*display: flex; moved to .btn in order to seperate from the h2 and p */
     justify-content: center;
     align-items: center;
 }
 
-.start-container {
+#score-list {
     text-align: center;
+    list-style-position: inside;
+    padding-right: 50px;
 }
 
 .hide {
     display: none;
-} /* redisplay once ready */
+}
 
 .vision {
     visibility: hidden;
+    animation: cssAnimation 5s forwards;
 }

@@ -1,15 +1,47 @@
 var startContainer = document.querySelector(".start-container");
 var questionContainerEl = document.querySelector("#question-container");
+var finalContainerEl = document.querySelector("#final-container");
+var scoreContainerEl = document.querySelector('#score-container');
+var scoreListEl = document.querySelector('#score-list');
+var initialBox = document.querySelector('#initial-box');
 var questionEl = document.querySelector("#question");
 var answerButtonEl = document.querySelector("#answer-btn");
+var timerEl = document.querySelector('#timer');
+
 
 let shuffledQuestions, currentQuestionIndex
 
+
+document.querySelector('#start-btn').addEventListener('click', countDown);
 document.querySelector('#answer-btn').addEventListener('click', () => {
     currentQuestionIndex++
     nextQuestion() });
 document.querySelector('#answer-btn').addEventListener('click', answerCorrection);
 
+//90secs Timer and Stop Timer when quiz is done
+var counter = 0;
+var timeleft = 100;
+function countDown () {
+    console.log( `countdown timer is running!` )
+       var timer = setInterval(function() {
+        timeleft--;
+        timerEl.innerHTML = 'Timer: '+timeleft;
+        if ( timeleft <= 0 ) {
+            clearInterval(timer);
+            questionContainerEl.classList.add('hide');
+            finalContainerEl.classList.remove('hide');
+        }
+        if ( shuffledQuestions.length < currentQuestionIndex +1 ){
+            clearInterval(timer);
+            document.querySelector('#user-score').innerHTML = ( `Your final score is ${timeleft}` );
+        }
+    }, 1000);
+}
+
+//Subtract Time
+function wrongSubtract (){ timeleft -= 15;
+    timerEl.innerHTML='Timer:'+timeleft;
+}
 
 function startQuiz() {
     console.log ( `You have started the quiz. Good luck!` );
@@ -17,22 +49,24 @@ function startQuiz() {
     shuffledQuestions = questionSet.sort(() => Math.random() - .5);
     currentQuestionIndex = 0;
     questionContainerEl.classList.remove('hide');
-
-    showQuestion(shuffledQuestions[currentQuestionIndex]);
+    nextQuestion();
 } 
 
 function nextQuestion() {
-    // reset ();
-    showQuestion(shuffledQuestions[currentQuestionIndex]);  
+    reset ();
+    if ( shuffledQuestions.length < currentQuestionIndex +1 ) {
+        questionContainerEl.classList.add('hide');
+        finalContainerEl.classList.remove('hide');
+    }
+    showQuestion(shuffledQuestions[currentQuestionIndex]);
 }
 
-// function reset() {
-//     clearStatusClass(document.body);
-//     while (answerButtonEl.firstChild) {
-//         answerButtonEl.removeChild(answerButtonEl.firstChild);
-//     }
-// }
-// NEED TO FIX IT MORE IN ORDER TO HIDE THE PREVIOUS ANSWER BUTTON
+//Remove previous array of answer buttons
+function reset() {
+    while (answerButtonEl.firstChild) {
+        answerButtonEl.removeChild(answerButtonEl.firstChild);
+    }
+}
 
 function showQuestion(question) {
     questionEl.innerText = question.question;
@@ -44,24 +78,45 @@ function showQuestion(question) {
                 button.dataset.correct = answer.correct
             }
         answerButtonEl.appendChild(button);
-    })}
-   
+    })    
+}
+
 function answerCorrection(event) {  
     const selectedBtn = event.target;
     const correct = selectedBtn.dataset.correct;
     if (correct==="true"){
         console.log (" hey you got correct answer ");
-        document.querySelector('#correct-answer').classList.remove('vision');
+        document.querySelector('#correct-answer').classList.remove('vision')
+        setTimeout(function(){
+            document.querySelector('#correct-answer').classList.add('vision'); 
+         }, 1000);
     } else {
         console.log("WRONG!!!!!")
         document.querySelector('#wrong-answer').classList.remove('vision');
-    }
+        setTimeout(function(){
+            document.querySelector('#wrong-answer').classList.add('vision'); 
+         }, 1000);
+        wrongSubtract ();
+    }  
+}
+
+//value of textbox to local storage(initial) with scores to highscore page
+var score = 0;
+var highscore = 0;
+function highScore () {
+    localStorage.setItem( 'initial', initialBox.value );
+    localStorage.setItem( 'score', timeleft );
+    finalContainerEl.classList.add('hide');
+    scoreContainerEl.classList.remove('hide');
+
+    var initial = localStorage.getItem( 'initial' );
+    var score = localStorage.getItem( 'score' );
+    scoreListEl.innerHTML = ( `<li>${initial} - ${score}</li>` );
 }
 
 
 
-
-
+//Question Array
 var questionSet = [
     { question: " What is the standard language used to create web pages? ",
         answer: [
@@ -103,3 +158,5 @@ var questionSet = [
         { text: "inline", correct: false }
     ]
     }];
+
+    
