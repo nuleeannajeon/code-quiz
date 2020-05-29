@@ -3,6 +3,8 @@ var questionContainerEl = document.querySelector("#question-container");
 var finalContainerEl = document.querySelector("#final-container");
 var scoreContainerEl = document.querySelector('#score-container');
 var scoreListEl = document.querySelector('#score-list');
+var userInitialEl = document.querySelector('#user-initial');
+var userScoreEl = document.querySelector('#user-score');
 var initialBox = document.querySelector('#initial-box');
 var questionEl = document.querySelector("#question");
 var answerButtonEl = document.querySelector("#answer-btn");
@@ -103,18 +105,40 @@ function answerCorrection(event) {
 //value of textbox to local storage(initial) with scores to highscore page
 var score = 0;
 var highscore = 0;
-function highScore () {
-    localStorage.setItem( 'initial', initialBox.value );
-    localStorage.setItem( 'score', timeleft );
+let userScore = localStorage.userScore ? JSON.parse(localStorage.userScore) : [  ];
+
+function highScores () {    
+    event.preventDefault();
+
     finalContainerEl.classList.add('hide');
     scoreContainerEl.classList.remove('hide');
 
-    var initial = localStorage.getItem( 'initial' );
-    var score = localStorage.getItem( 'score' );
-    scoreListEl.innerHTML = ( `<li>${initial} - ${score}</li>` );
+    
+    userScore.push ( `${initialBox.value} - ${timeleft} ` );
+    localStorage.userscore = JSON.stringify(userScore);
+    
+    renderList();
 }
 
+function renderList(){
+    
+    userScore.forEach(
+        function( item, index ){
+            scoreListEl.innerHTML += `<li id="${index}">${item}<span id="user-score"></span></li>`;
+        }
+    )
+}
+renderList();
 
+function clearList (){
+    localStorage.clear();
+    scoreListEl.innerHTML = ' '
+}
+
+function goBack (e) {
+    location.reload();
+ }
+ 
 
 //Question Array
 var questionSet = [

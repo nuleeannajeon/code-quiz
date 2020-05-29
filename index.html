@@ -8,10 +8,10 @@
     <script defer src="script.js"></script>
 </head>
 <body>
-    <footer>
+    <header>
         <div id="high-score">View High Score</div>
         <div id="timer">Timer: 100</div>    
-    </footer>
+    </header>
 
     <main>
         <div class="container">
@@ -38,15 +38,16 @@
                     <p id="user-score">Your final score is </p>
                 </br>
                 <label for="enter-initial">Enter initials:</label><input id="initial-box" type="text">
-                <button id="initial-btn" onClick="highScore()" type="button" class="initial-btn btn">Submit</button>
+                <button id="initial-btn" onClick="highScores()" type="button" class="initial-btn btn">Submit</button>
                 </div>
             </div>
             <div id="score-container" class="hide">
                 <h2>Highscores</h2>
                 <ol id="score-list">
+                    <!-- <li id="user-initial"></li> -->
                 </ol>
-                <button id="go-back" class="back-btn btn">Go Back</button>
-                <button id="clear-score" class="clear-btn btn">Clear Highscores</button>
+                <button id="go-back" onClick="goBack ()" class="back-btn btn">Go Back</button>
+                <button id="clear-score" onClick="clearList ()" class="clear-btn btn">Clear Highscores</button>
             </div>
         </div>
     </main>
